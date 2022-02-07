@@ -1,0 +1,28 @@
+syntax = "proto3";
+package service;
+
+service ProductInfo {
+ rpc addProduct(Product) returns (ProductId);
+ rpc getProduct(ProductId) returns (Product);
+ rpc searchProducts(Search) returns (stream Product);
+ rpc addSomeProducts(stream Product) returns (ProductIds);
+ rpc updateProducts(stream Product) returns (stream Product);
+}
+
+message ProductIds {
+    repeated int32 value = 1;
+}
+
+message Search {
+    string search = 1;
+}
+
+message Product {
+ int32 id = 1;
+ string name = 2;
+ string description = 3;
+}
+
+message ProductId { 
+ int32 value = 1;
+}
